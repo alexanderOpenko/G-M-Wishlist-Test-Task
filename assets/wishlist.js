@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const productElement = e.target.closest('.product-item');
       if (productElement) productElement.remove();
+      updateSavedCount()
     });
   });
 });

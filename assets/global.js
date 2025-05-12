@@ -8,8 +8,29 @@ function toggleSaveButton(saveButton, hideIcon = false, text = '') {
   }
 }
 
-//accordeon with image section
 document.addEventListener('DOMContentLoaded', function () {
+  updateSavedCount()
+  accordeonWithImage()
+});
+
+function updateSavedCount() {
+  const savedVariants = JSON.parse(localStorage.getItem('savedProductVariants')) || [];
+  const savedCountElement = document.querySelector('.saved-count');
+
+  if (savedCountElement) {
+    const count = savedVariants.length;
+
+    if (count > 0) {
+      savedCountElement.textContent = count;
+      savedCountElement.style.display = 'inline-block';
+    } else {
+      savedCountElement.textContent = '';
+      savedCountElement.style.display = 'none';
+    }
+  }
+}
+
+function accordeonWithImage() {
   const items = document.querySelectorAll('.accordion-item');
 
   items.forEach((item) => {
@@ -32,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-});
+}
 
 function getFocusableElements(container) {
   return Array.from(

@@ -46,6 +46,7 @@ if (!customElements.get('product-form')) {
         }
 
         localStorage.setItem('savedProductVariants', JSON.stringify(savedVariants));
+        updateSavedCount();
       }
 
       onSubmitHandler(evt) {
