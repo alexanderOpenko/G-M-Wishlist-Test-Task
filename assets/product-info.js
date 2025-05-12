@@ -23,7 +23,7 @@ if (!customElements.get('product-info')) {
         const storedData = JSON.parse(localStorage.getItem("savedProductVariants"));
         let idSet = null;
 
-        if (storedData.length) {
+        if (storedData) {
           idSet = new Set(storedData.map(item => item.id));
         }
 
@@ -43,7 +43,7 @@ if (!customElements.get('product-info')) {
 
           // update button save state
           if (productWrapper) {
-            if (storedData.length && id && idSet.has(String(id))) {
+            if (storedData && id && idSet.has(String(id))) {
               const button = productWrapper.querySelector('.js-product-variant-save');
 
               if (button) {
