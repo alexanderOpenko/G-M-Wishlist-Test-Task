@@ -9,36 +9,122 @@
  */
 {
   "sections": {
-    "featured_collection": {
-      "type": "featured-collection",
+    "slideshow_q4WxwJ": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_RADqme": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/img-9398-hzsjyh-819x1024.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "New products",
+            "heading_size": "h1",
+            "subheading": "Discover new arrivals",
+            "button_label": "Shop now",
+            "link": "shopify://pages/all-products",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_RADqme"
+      ],
+      "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 24,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "outline",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 36
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "accordeon_with_image_ypNHKE": {
+      "type": "accordeon-with-image",
+      "blocks": {
+        "accordion_item_DUbTA8": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Lorem ipsum",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "accordion_item_jThFQM": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Lorem ipsum",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "accordion_item_MxqinH": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Lorem ipsum",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "accordion_item_kfreqD": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Lorem ipsum",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        },
+        "accordion_item_FUXakC": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Lorem ipsum",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          }
+        }
+      },
+      "block_order": [
+        "accordion_item_DUbTA8",
+        "accordion_item_jThFQM",
+        "accordion_item_MxqinH",
+        "accordion_item_kfreqD",
+        "accordion_item_FUXakC"
+      ],
+      "name": "Accordion with Image",
+      "settings": {
+        "image": "shopify://shop_images/img-9553-k7kc5s-819x1024.jpg"
+      }
+    },
+    "rich_text_K66gzd": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_yTFUJR": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_yTFUJR"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
-    "featured_collection"
+    "slideshow_q4WxwJ",
+    "rich_text_K66gzd",
+    "accordeon_with_image_ypNHKE"
   ]
 }

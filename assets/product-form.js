@@ -15,10 +15,42 @@ if (!customElements.get('product-form')) {
         if (document.querySelector('cart-drawer')) this.submitButton.setAttribute('aria-haspopup', 'dialog');
 
         this.hideErrors = this.dataset.hideErrors === 'true';
+
+        // buttons for save variant
+        const saveBtns = this.querySelectorAll('.js-product-variant-save');
+
+        if (saveBtns.length) {
+          saveBtns.forEach((btn) => btn.addEventListener('click', this.onSaveButtonClick.bind(this)))
+        }
+      }
+
+      onSaveButtonClick(evt) {
+        evt.preventDefault();
+
+        const formData = new FormData(this.form);
+        const formDataObject = Object.fromEntries(formData.entries());
+        const savedVariants = JSON.parse(localStorage.getItem('savedProductVariants')) || [];
+
+        const variantId = formDataObject.id;
+
+        const existingIndex = savedVariants.findIndex(item => item.id === variantId);
+
+        if (existingIndex !== -1) {
+          // Видалити, якщо вже є
+          savedVariants.splice(existingIndex, 1);
+          toggleSaveButton(evt.target, false);
+        } else {
+          // Додати, якщо немає
+          savedVariants.push(formDataObject);
+          toggleSaveButton(evt.target, true, 'Saved');
+        }
+
+        localStorage.setItem('savedProductVariants', JSON.stringify(savedVariants));
       }
 
       onSubmitHandler(evt) {
         evt.preventDefault();
+
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
         this.handleErrorMessage();

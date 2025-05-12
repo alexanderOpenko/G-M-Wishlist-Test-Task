@@ -1,0 +1,70 @@
+{% schema %}
+{
+  "name": "Accordion with Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion_item",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Accordion with Image",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="accordion-with-image">
+  <div class="container">
+    <div class="accordion-side">
+      <div class="accordion">
+        {% for block in section.blocks %}
+          <div class="accordion-item" data-index="{{ forloop.index0 }}">
+            <button class="accordion-title flex-between">
+              {{ block.settings.title }}
+              <span class="accordion-icon">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p>{{ block.settings.content }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="image-side">
+      {% if section.settings.image %}
+        <img
+          width="600"
+          ,
+          height="600"
+          src="{{ section.settings.image | image_url: width: 1000, height: 1000 }}"
+          alt="Accordion Image"
+        >
+      {% endif %}
+    </div>
+  </div>
+</section>
+

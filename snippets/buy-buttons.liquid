@@ -6,7 +6,8 @@
   - product_form_id: {String} product form id.
   - section_id: {String} id of section to which this snippet belongs.
   - show_pickup_availability: {Boolean} for the pickup availability. If true the pickup availability is rendered, false - not rendered (optional).
-
+  - section_product_id
+  - is_products_list
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% endcomment %}
@@ -28,6 +29,9 @@
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
+      {% if section_product_id %}
+        data-product-id={{ section_product_id }}
+      {% endif %}
     >
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <span class="svg-wrapper">
@@ -60,7 +64,11 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
-        <div class="product-form__buttons">
+        {%- if is_products_list -%}
+          {%- assign button_classes = "is-products-list flex-between mt-10px" -%}
+        {%- endif -%}
+
+        <div class="product-form__buttons {{ button_classes }}">
           {%- liquid
             assign check_against_inventory = true
             if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
@@ -70,8 +78,27 @@
               assign quantity_rule_soldout = true
             endif
           -%}
+
           <button
-            id="ProductSubmitButton-{{ section_id }}"
+            id="ProductVariantSaveButton-{{ section.id }}"
+            {% if section_product_id != blank %}
+              data-button-id={{ section_product_id }}
+            {% endif %}
+            type="button"
+            class="js-product-variant-save flex-between product-save-btn button button--full-width"
+            {% if product.selected_or_first_available_variant.available == false
+              or quantity_rule_soldout
+              or product.selected_or_first_available_variant == null
+            %}
+              disabled
+            {% endif %}
+          >
+            <div class="save-btn-text"></div>
+            <div class="svg-wrapper">{{'heart.svg' | inline_asset_content }}</div>
+          </button>
+
+          <button
+            id="ProductSubmitButton-{{ product.id }}"
             type="submit"
             name="add"
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"

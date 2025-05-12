@@ -1,3 +1,39 @@
+function toggleSaveButton(saveButton, hideIcon = false, text = '') {
+  saveButton.querySelector('.save-btn-text').innerHTML = text;
+
+  if (hideIcon) {
+    saveButton.querySelector('.svg-wrapper').classList.add('hidden')
+  } else {
+    saveButton.querySelector('.svg-wrapper').classList.remove('hidden')
+  }
+}
+
+//accordeon with image section
+document.addEventListener('DOMContentLoaded', function () {
+  const items = document.querySelectorAll('.accordion-item');
+
+  items.forEach((item) => {
+    const title = item.querySelector('.accordion-title');
+    const content = item.querySelector('.accordion-content');
+
+    content.style.maxHeight = '0px';
+    content.style.overflow = 'hidden';
+    content.style.transition = 'max-height 0.3s ease';
+
+    title.addEventListener('click', () => {
+      const isOpen = content.style.maxHeight !== '0px';
+
+      document.querySelectorAll('.accordion-content').forEach((c) => {
+        c.style.maxHeight = '0px';
+      });
+
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+});
+
 function getFocusableElements(container) {
   return Array.from(
     container.querySelectorAll(
@@ -1051,7 +1087,7 @@ class SlideshowComponent extends SliderComponent {
     const slideScrollPosition =
       this.slider.scrollLeft +
       this.sliderFirstItemNode.clientWidth *
-        (this.sliderControlLinksArray.indexOf(event.currentTarget) + 1 - this.currentPage);
+      (this.sliderControlLinksArray.indexOf(event.currentTarget) + 1 - this.currentPage);
     this.slider.scrollTo({
       left: slideScrollPosition,
     });

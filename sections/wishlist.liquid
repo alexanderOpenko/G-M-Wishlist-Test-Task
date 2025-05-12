@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="saved-products-wrapper">
+    {% if settings.heading %}
+      <h2>{{ settings.heading }}</h2>
+    {% endif %}
+    
+    {% if settings.subheading %}
+      <p>{{ settings.subheading }}</p>
+    {% endif %}
+    
+    <div id="saved-products" class="product-grid"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "wishlist",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "heading",
+      "default": "Wishlist"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "sub heading",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wishlist",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
