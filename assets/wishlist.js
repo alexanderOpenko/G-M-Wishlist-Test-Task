@@ -43,35 +43,39 @@ document.addEventListener("DOMContentLoaded", async () => {
       minimumFractionDigits: 2
     }).format(rawPrice);
 
+    const link = foundVariant ? 
+      `/products/${foundProduct.handle}?variant=${variantId}` : 
+      `/products/${foundProduct.handle}`;
+
     const productHTML = `
-  <div class="product-item relative product-wrapper" data-variant-id="${variantId}">
-    <a href="/products/${foundProduct.handle}" class="full-absolute"> </a>
+      <div class="product-item relative product-wrapper" data-variant-id="${variantId}">
+        <a href="${link}" class="full-absolute"> </a>
 
-    <div class="image-wrapper">
-      <img width="300" height="300" src="${image}" alt="${title}" class="product-image">
-    </div>
+        <div class="image-wrapper">
+          <img width="300" height="300" src="${image}" alt="${title}" class="product-image">
+        </div>
 
-    <div class="product-details">
-      ${!isMainProduct ? `<div class="product-options">
-        ${Object.entries(item)
-          .filter(([key]) => key.startsWith("options["))
-          .map(([key, val]) => `<span>${key.replace(/^options\[|\]$/g, "")}: ${val}</span>`)
-          .join(" / ")}
-      </div>` : ""}
+        <div class="product-details">
+          ${!isMainProduct ? `<div class="product-options">
+            ${Object.entries(item)
+              .filter(([key]) => key.startsWith("options["))
+              .map(([key, val]) => `<span>${key.replace(/^options\[|\]$/g, "")}: ${val}</span>`)
+              .join(" / ")}
+          </div>` : ""}
 
-      <h3 class="product-title">${title}</h3>
+          <h3 class="product-title">${title}</h3>
 
-      <div class="flex product-price">
-        <div>${price}</div>
-        <div class="ml-15px">${Shopify.currency.active || "USD"}</div>
+          <div class="flex product-price">
+            <div>${price}</div>
+            <div class="ml-15px">${Shopify.currency.active || "USD"}</div>
+          </div>
+
+          <form class="unsave-form" data-variant-id="${variantId}">
+            <input type="hidden" name="id" value="${variantId}">
+            <button type="submit" class="button unsave-button">Unsave</button>
+          </form>
+        </div>
       </div>
-
-      <form class="unsave-form" data-variant-id="${variantId}">
-        <input type="hidden" name="id" value="${variantId}">
-        <button type="submit" class="button unsave-button">Unsave</button>
-      </form>
-    </div>
-  </div>
 `;
     container.insertAdjacentHTML("beforeend", productHTML);
   });
