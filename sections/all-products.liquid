@@ -9,19 +9,21 @@
   >
     <div class="product-grid">
       {% for product in collections.all.products %}
+        {% assign variant = product.selected_or_first_available_variant %}
         {%- assign product_form_id = 'product-form-' | append: product.id -%}
-        <div class="product-item relative product-wrapper"
-            id="MainProduct-{{ product.id }}"
-            data-product-id="{{ product.id }}"
-            data-url="{{ product.url }}"
-          >
+        <div
+          class="product-item relative product-wrapper"
+          id="MainProduct-{{ product.id }}"
+          data-product-id="{{ product.id }}"
+          data-url="{{ product.url }}"
+        >
           <a href="{{ product.url }}" class="full-absolute"> </a>
 
           <div class="image-wrapper">
             <img
               width="300"
               height="300"
-              src="{{ product.featured_image | image_url: width:1000, height:1000 }}"
+              src="{{ variant.featured_image | default: product.featured_image | image_url: width: 1000, height: 1000 }}"
               alt="{{ product.title }}"
               class="product-image"
             >
@@ -45,7 +47,7 @@
                       product_form_id: product_form_id,
                       section_id: section.id,
                       section_product_id: product.id,
-                      is_products_list: true
+                      is_products_list: true,
                       show_pickup_availability: true
                     -%}
                 {%- endcase -%}
@@ -56,9 +58,8 @@
 
             <div class="flex product-price">
               <div class="products-list-price" id="price-{{ product.id }}">
-                {{ product.price | money_without_currency  }}
+                {{ variant.price | money_without_currency }}
               </div>
-
               <div class="ml-15px">
                 {{ shop.currency }}
               </div>
